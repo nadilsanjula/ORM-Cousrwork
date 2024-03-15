@@ -1,13 +1,13 @@
 package controller;
 
-
-
-
 import bo.BOFactory;
 import bo.custom.BookBO;
 import bo.custom.BranchBO;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
+import dto.BookDto;
+import dto.BranchDto;
+import entity.Branch;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -22,14 +22,13 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-
+import tm.BookTM;
 
 import java.io.IOException;
 import java.util.List;
 import java.util.regex.Pattern;
 
-public class BookManageController {
-
+public class BookFormController {
     public Text txtId;
     public TableColumn<?,?> colId;
     @FXML
@@ -54,7 +53,7 @@ public class BookManageController {
     private TableColumn<?, ?> colTitle;
 
     @FXML
-    private TableView<BookTm> tblBook;
+    private TableView<BookTM> tblBook;
 
     @FXML
     private JFXTextField txtAuthor;
@@ -83,10 +82,10 @@ public class BookManageController {
         try{
             List<BookDto> books = bookBo.getAllBooks();
 
-            ObservableList<BookTm> bookTm = FXCollections.observableArrayList();
+            ObservableList<BookTM> bookTm = FXCollections.observableArrayList();
 
             for(BookDto dto :books){
-                bookTm.add(new BookTm(
+                bookTm.add(new BookTM(
                         dto.getId(),
                         dto.getTitle(),
                         dto.getAuthor(),
@@ -318,5 +317,4 @@ public class BookManageController {
         cmbStatus.setValue(colStatus.getCellData(index).toString());
         cmbBranch.setValue(colBranch.getCellData(index).toString());
     }
-
 }

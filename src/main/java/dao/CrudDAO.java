@@ -4,9 +4,15 @@ import java.sql.SQLException;
 import java.util.List;
 
 public interface CrudDAO <T> extends SuperDAO{
-    boolean save(T dto) throws SQLException;
-    boolean update(T dto) throws SQLException;
-    boolean remove(String id) throws SQLException;
-    T search(String id) throws SQLException;
-    List<T> getAll() throws SQLException;
+    String generateNextId()throws Exception;
+
+    List<T> getAll()throws Exception;
+
+    boolean save(T book)throws Exception;
+
+    boolean delete(T book)throws Exception;
+
+    boolean update(T book)throws Exception;
+
+    T search(String id)throws Exception;
 }

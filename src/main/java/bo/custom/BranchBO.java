@@ -1,6 +1,7 @@
 package bo.custom;
 
 import bo.SuperBO;
+import dto.BranchDto;
 
 import java.util.List;
 

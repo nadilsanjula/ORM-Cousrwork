@@ -3,37 +3,83 @@ package bo.custom.impl;
 import bo.custom.BookBO;
 import dao.DAOFactory;
 import dao.custom.BookDAO;
-import dto.BookDTO;
+import dto.BookDto;
 import entity.Book;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class BookBOImpl implements BookBO {
 
-    BookDAO bookDAO =(BookDAO) DAOFactory.getDaoFactory().getDAO(DAOFactory.DAOTypes.BOOK);
+    BookDAO bookDao = (BookDAO) DAOFactory.getDaoFactory().getDAO(DAOFactory.DAOTypes.BOOK);
     @Override
-    public boolean saveBook(BookDTO dto) throws SQLException {
-        return bookDAO.save(new Book(dto.getId(),dto.getName(),dto.getType()));
+    public String generateNextBookId() throws Exception {
+        return bookDao.generateNextId();
+    }
+    @Override
+    public List<BookDto> getAllBooks() throws Exception {
+        List<Book> books = bookDao.getAll();
+
+        List<BookDto> bookDto = new ArrayList<>();
+
+        for(Book book:books){
+            bookDto.add(new BookDto(
+                    book.getId(),
+                    book.getTitle(),
+                    book.getAuthor(),
+                    book.getGenre(),
+                    book.getStatus(),
+                    book.getBranch()
+            ));
+        }
+        return bookDto;
     }
 
     @Override
-    public boolean updateBook(BookDTO dto) throws SQLException {
-        return false;
+    public boolean saveBook(BookDto bookDto) throws Exception {
+        return bookDao.save(new Book(
+                bookDto.getId(),
+                bookDto.getTitle(),
+                bookDto.getAuthor(),
+                bookDto.getGenre(),
+                bookDto.getStatus(),
+                bookDto.getBranch()
+        ));
     }
-
     @Override
-    public boolean removeBook(String id) throws SQLException {
-        return false;
+    public boolean deleteBook(BookDto bookDto) throws Exception {
+        return bookDao.delete(new Book(
+                bookDto.getId(),
+                bookDto.getTitle(),
+                bookDto.getAuthor(),
+                bookDto.getGenre(),
+                bookDto.getStatus(),
+                bookDto.getBranch()
+        ));
     }
-
     @Override
-    public BookDTO searchBook(String id) throws SQLException {
-        return null;
+    public boolean updateBook(BookDto bookDto) throws Exception {
+        return bookDao.update(new Book(
+                bookDto.getId(),
+                bookDto.getTitle(),
+                bookDto.getAuthor(),
+                bookDto.getGenre(),
+                bookDto.getStatus(),
+                bookDto.getBranch()
+        ));
     }
-
     @Override
-    public List<BookDTO> getAllBook() throws SQLException {
-        return null;
+    public BookDto searchBook(String id) throws Exception {
+        Book book = bookDao.search(id);
+
+        return new BookDto(
+                book.getId(),
+                book.getTitle(),
+                book.getAuthor(),
+                book.getGenre(),
+                book.getStatus(),
+                book.getBranch()
+        );
     }
 }

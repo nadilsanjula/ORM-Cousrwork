@@ -1,5 +1,6 @@
 package dao;
 
+import dao.custom.impl.AdminDaoImpl;
 import dao.custom.impl.BookDAOImpl;
 
 public class DAOFactory {
@@ -12,16 +13,19 @@ public class DAOFactory {
         return daoFactory == null ? daoFactory = new DAOFactory() : daoFactory;
     }
 
-    public enum DAOTypes {
-        BOOK}
-
-    public SuperDAO getDAO(DAOTypes daoTypes) {
-        switch (daoTypes) {
-            case BOOK:
-                return new BookDAOImpl();
-
-            default:
-                return null;
-        }
+    public enum DAOTypes{
+        ADMIN,BOOK,BORROW,BRANCH,QUERY,USER
     }
+
+    public SuperDAO getDAO(DAOTypes dtoTypes){
+        switch (dtoTypes){
+            case ADMIN: return new AdminDaoImpl();
+            case BOOK: return new BookDaoImpl();
+            case BORROW: return new BorrowDaOImpl();
+            case BRANCH: return new BranchDaoImpl();
+            case QUERY: return new QueryDaoImpl();
+            case USER:return new UserDaoImpl();
+
+        }
+        return null;
 }
