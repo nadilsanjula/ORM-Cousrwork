@@ -6,18 +6,41 @@ import dao.custom.BookDAO;
 import dto.BookDto;
 import entity.Book;
 
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BookBOImpl implements BookBO {
-
+public class BookBoImpl implements BookBO {
     BookDAO bookDao = (BookDAO) DAOFactory.getDaoFactory().getDAO(DAOFactory.DAOTypes.BOOK);
     @Override
     public String generateNextBookId() throws Exception {
         return bookDao.generateNextId();
     }
+
     @Override
+    public List<BookDto> getAllBooks() throws Exception {
+        return null;
+    }
+
+    @Override
+    public boolean saveBook(BookDto bookDto) throws Exception {
+        return false;
+    }
+
+    @Override
+    public boolean deleteBook(BookDto bookDto) throws Exception {
+        return false;
+    }
+
+    @Override
+    public boolean updateBook(BookDto bookDto) throws Exception {
+        return false;
+    }
+
+    @Override
+    public BookDto searchBook(String id) throws Exception {
+        return null;
+    }
+    /*@Override
     public List<BookDto> getAllBooks() throws Exception {
         List<Book> books = bookDao.getAll();
 
@@ -81,5 +104,5 @@ public class BookBOImpl implements BookBO {
                 book.getStatus(),
                 book.getBranch()
         );
-    }
+    }*/
 }

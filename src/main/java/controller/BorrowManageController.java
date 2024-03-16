@@ -330,7 +330,7 @@ public class BorrowManageController {
             session.save(borrow);
 
 
-            int i = 0;
+            /*int i = 0;
             for (BorrowTm borrowTm : borrowTmList) {
                 session.save(new BookDetails(
                         detailId.get(i),
@@ -342,15 +342,15 @@ public class BorrowManageController {
 
                 ));
                 i++;
-            }
+            }*/
 
-            for (BorrowTm borrowTm : borrowTmList) {
+            /*for (BorrowTm borrowTm : borrowTmList) {
                 String id = borrowTm.getBookId();
                 Book book = session.get(Book.class, id);
                 book.setStatus("Unavailable");
                 session.update(book);
 
-            }
+            }*/
 
             transaction.commit();
 
@@ -418,7 +418,7 @@ public class BorrowManageController {
             session.save(borrow);
 
 
-            int i = 0;
+            /*int i = 0;
             for (BorrowTm borrowTm : borrowTmList) {
                 session.save(new BookDetails(
                         detailId.get(i),
@@ -438,7 +438,7 @@ public class BorrowManageController {
                 book.setStatus("Available");
                 session.update(book);
 
-            }
+            }*/
 
             transaction.commit();
 

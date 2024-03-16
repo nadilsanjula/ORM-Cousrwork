@@ -29,7 +29,7 @@ public class LoginPageController {
 
     @FXML
     void createOnAction(ActionEvent event) throws IOException {
-        Parent rootNode = FXMLLoader.load(getClass().getResource("/view/Dashboard.fxml"));
+        Parent rootNode = FXMLLoader.load(getClass().getResource("/view/createAccForm.fxml"));
         Scene scene = new Scene(rootNode);
         Stage stage = new Stage();
         stage.initStyle(StageStyle.TRANSPARENT);

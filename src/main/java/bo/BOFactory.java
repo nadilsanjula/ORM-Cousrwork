@@ -21,7 +21,7 @@ public class BOFactory {
             case ADMIN:
                 return new AdminBoImpl();
             case BOOK:
-                return new BookBOImpl();
+                return new BookBoImpl();
             case BORROW:
                 return new BorrowBoImpl();
             case BRANCH:
@@ -29,7 +29,7 @@ public class BOFactory {
             case USER:
                 return new UserBoImpl();
             case QUERY:
-                return new QueryBoImpl();
+                return new QuaryBoImpl();
         }
         return null;
     }
