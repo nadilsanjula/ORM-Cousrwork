@@ -1,7 +1,6 @@
 package bo;
 
-import bo.custom.impl.AdminBoImpl;
-import bo.custom.impl.BookBOImpl;
+import bo.custom.impl.*;
 
 public class BOFactory {
     public static  BOFactory boFactory;
